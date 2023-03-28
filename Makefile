@@ -30,7 +30,7 @@ endif
 # Compile flags
 #
 
-CFLAGS   = -I.              -O3 -DNDEBUG -std=c11   -fPIC -march=znver1
+CFLAGS   = -I.              -O3 -DNDEBUG -std=c11   -fPIC -march=native
 CXXFLAGS = -I. -I./examples -O3 -DNDEBUG -std=c++11 -fPIC
 LDFLAGS  =
 
