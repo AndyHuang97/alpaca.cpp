@@ -30,7 +30,7 @@ endif
 # Compile flags
 #
 
-CFLAGS   = -I.              -O3 -DNDEBUG -std=c11   -fPIC -march=native
+CFLAGS   = -I.              -O3 -DNDEBUG -std=c11   -fPIC
 CXXFLAGS = -I. -I./examples -O3 -DNDEBUG -std=c++11 -fPIC
 LDFLAGS  =
 
@@ -90,6 +90,8 @@ ifeq ($(UNAME_M),$(filter $(UNAME_M),x86_64 i686))
 		F16C_M := $(shell grep "f16c " /proc/cpuinfo)
 		ifneq (,$(findstring f16c,$(F16C_M)))
 			CFLAGS += -mf16c
+		else ifneq (,$(findstring avx,$(AVX1_M)))
+			CFLAGS := $(filter-out -mavx,$(CFLAGS))
 		endif
 		SSE3_M := $(shell grep "sse3 " /proc/cpuinfo)
 		ifneq (,$(findstring sse3,$(SSE3_M)))
